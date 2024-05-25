@@ -21,12 +21,6 @@ namespace Test1.Repositories
             var students = new List<Student>();
             try
             {
-                //if (!_fileWrapper.FileExists(_fileLocation))
-                //{
-                //    _fileWrapper.CreateFile(_fileLocation);
-                //    var student = new Student();
-                //    CreateStudent(student);
-                //}
                 ValidateFileExistence(fileLocation);
 
                 XDocument document = XDocument.Load(fileLocation);
@@ -48,22 +42,30 @@ namespace Test1.Repositories
             return students;
         }
 
-        public Student GetStudent(int id)
+        public Student GetStudent(int id, string fileLocation)
         {
             try 
             { 
-                //ValidateFileExistence();
-                XDocument xDocument = XDocument.Load(_fileLocation);
+                ValidateFileExistence(fileLocation);
+                XDocument xDocument = XDocument.Load(fileLocation);
                 XElement studentElement = xDocument.Root.Elements("Student")
                     .FirstOrDefault(e => (int)e.Element("Id") == id);
 
-                var student = new Student();
-
-                student.Id = int.Parse(studentElement.Element("Id").Value);
-                student.Name = studentElement.Element("Name").Value;
-                student.Surname = studentElement.Element("Surname").Value;
-                student.CellNumber = studentElement.Element("CellNumber").Value;
-                return student;
+                if (studentElement != null)
+                {
+                    var student = new Student
+                    {
+                        Id = int.Parse(studentElement.Element("Id").Value),
+                        Name = studentElement.Element("Name").Value,
+                        Surname = studentElement.Element("Surname").Value,
+                        CellNumber = studentElement.Element("CellNumber").Value
+                    };
+                    return student;
+                }
+                else
+                {
+                    throw new Exception("Error: Student does not exist");
+                }
             }
             catch(Exception ex) 
             {
@@ -73,19 +75,19 @@ namespace Test1.Repositories
         }
 
 
-        public void CreateStudent(Student student)
+        public void CreateStudent(Student student, string fileLocation)
         {
             try
             {
-                //ValidateFileExistence();
+                ValidateFileExistence(fileLocation);
 
-                //var currentStudents = ListStudents();
-                //int newId = currentStudents.OrderByDescending(student => student.Id).Select(i => i.Id).First() + 1;
+                var currentStudents = ListStudents(fileLocation);
+                int newId = currentStudents.OrderByDescending(student => student.Id).Select(i => i.Id).First() + 1;
 
-                XDocument document = XDocument.Load(_fileLocation);
+                XDocument document = XDocument.Load(fileLocation);
 
                 XElement newStudent = new XElement("Student",
-                    new XElement("Id", 1 /*newId*/),
+                    new XElement("Id", newId),
                     new XElement("Name", student.Name),
                     new XElement("Surname", student.Surname),
                     new XElement("CellNumber", student.CellNumber)
@@ -93,7 +95,7 @@ namespace Test1.Repositories
 
                 document.Element("Students").Add(newStudent);
 
-                document.Save(_fileLocation);
+                document.Save(fileLocation);
             }
             catch (Exception ex)
             {
@@ -101,20 +103,20 @@ namespace Test1.Repositories
             }
         }
 
-        public void EditStudent(Student student)
+        public void EditStudent(Student student, string fileLocation)
         {
             try
             {
-                //ValidateFileExistence();
+                ValidateFileExistence(fileLocation);
 
-                XDocument xDocument = XDocument.Load(_fileLocation);
+                XDocument xDocument = XDocument.Load(fileLocation);
                 XElement studentElement = xDocument.Root.Elements("Student")
                     .FirstOrDefault(e => (int)e.Element("Id") == student.Id);
 
                 studentElement.SetElementValue("Name", student.Name);
                 studentElement.SetElementValue("Surname", student.Surname);
                 studentElement.SetElementValue("CellNumber", student.CellNumber);
-                xDocument.Save(_fileLocation);
+                xDocument.Save(fileLocation);
             }
             catch (Exception ex)
             {
@@ -122,19 +124,19 @@ namespace Test1.Repositories
             }
 
         }
-        public void DeleteStudent(int id)
+        public void DeleteStudent(int id, string fileLocation)
         {
             try
             {
-                //ValidateFileExistence();
+                ValidateFileExistence(fileLocation);
 
-                XDocument document = XDocument.Load(_fileLocation);
+                XDocument document = XDocument.Load(fileLocation);
 
                 document.Root.Elements("Student")
                     .Where(e => (int)e.Element("Id") == id)
                     .Remove();
 
-                document.Save(_fileLocation);
+                document.Save(fileLocation);
             }
             catch(Exception ex )
             {
@@ -147,21 +149,9 @@ namespace Test1.Repositories
         {
             if (!_fileWrapper.FileExists(fileLocation))
             {
-                var students = new List<Student>();
-                //_fileWrapper.CreateFile(_fileLocation);
                 XDocument document = new XDocument(
                     new XElement("Students"));
-                        //from student in students
-                        //select new XElement("Student",
-                        //    new XElement("Id", student.Id),
-                        //    new XElement("Name", student.Name),
-                        //    new XElement("Surname", student.Surname),
-                        //    new XElement("CellNumber", student.CellNumber)
-                        //)
-                //     )
-                //);
                 document.Save(fileLocation);
-                //CreateStudent(student);
             }
         }
     }

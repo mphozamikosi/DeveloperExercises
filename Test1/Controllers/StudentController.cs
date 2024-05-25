@@ -9,21 +9,24 @@ namespace Test1.Controllers
     {
         public static readonly Student student = new Student();
         public readonly IStudentRepository _studentRepository;
-        public StudentController(IStudentRepository studentRepository) 
+        private readonly IConfiguration _configuration;
+        private readonly string _fileLocation = "";
+        public StudentController(IStudentRepository studentRepository, IConfiguration configuration) 
         {
             _studentRepository = studentRepository;
+            _fileLocation = configuration["StudentFileLocation"];
         }
         // GET: StudentController
         public ActionResult Index()
         {
-            var students = _studentRepository.ListStudents("../Test1/FileLocation/Students.xml");
+            var students = _studentRepository.ListStudents(_fileLocation);
             return View(students);
         }
 
         // GET: StudentController/Details/5
         public ActionResult Details(int id)
         {
-            return View(_studentRepository.GetStudent(id));
+            return View(_studentRepository.GetStudent(id, _fileLocation));
         }
 
         // GET: StudentController/Create
@@ -40,7 +43,7 @@ namespace Test1.Controllers
         {
             try
             {
-                _studentRepository.CreateStudent(student);
+                _studentRepository.CreateStudent(student, _fileLocation);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -52,7 +55,7 @@ namespace Test1.Controllers
         // GET: StudentController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(_studentRepository.GetStudent(id));
+            return View(_studentRepository.GetStudent(id, _fileLocation));
         }
 
         // POST: StudentController/Edit/5
@@ -62,7 +65,7 @@ namespace Test1.Controllers
         {
             try
             {
-                _studentRepository.EditStudent(student);
+                _studentRepository.EditStudent(student, _fileLocation);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -74,7 +77,7 @@ namespace Test1.Controllers
         // GET: StudentController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(_studentRepository.GetStudent(id));
+            return View(_studentRepository.GetStudent(id, _fileLocation));
         }
 
         // POST: StudentController/Delete/5
@@ -84,7 +87,7 @@ namespace Test1.Controllers
         {
             try
             {
-                _studentRepository.DeleteStudent(id);
+                _studentRepository.DeleteStudent(id, _fileLocation);
                 return RedirectToAction(nameof(Index));
             }
             catch
