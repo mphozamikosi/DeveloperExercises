@@ -1,2 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Students />
+<Students>
+  <Student>
+    <Id>2</Id>
+    <Name>Edit Name</Name>
+    <Surname>Edit Surname</Surname>
+    <CellNumber>0665775467</CellNumber>
+  </Student>
+  <Student>
+    <Id>3</Id>
+    <Name>Test Name</Name>
+    <Surname>Test Surname</Surname>
+    <CellNumber>0665775467</CellNumber>
+  </Student>
+  <Student>
+    <Id>4</Id>
+    <Name>Test Name</Name>
+    <Surname>Test Surname</Surname>
+    <CellNumber>0665775467</CellNumber>
+  </Student>
+  <Student>
+    <Id>5</Id>
+    <Name>Test Name</Name>
+    <Surname>Test Surname</Surname>
+    <CellNumber>0665775467</CellNumber>
+  </Student>
+</Students>

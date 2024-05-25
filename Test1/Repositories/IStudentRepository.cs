@@ -5,9 +5,9 @@ namespace Test1.Repositories
     public interface IStudentRepository
     {
         public List<Student> ListStudents(string fileLocation);
-        public Student GetStudent(int id);
-        public void CreateStudent(Student student);
-        public void EditStudent(Student student);
-        public void DeleteStudent(int id);
+        public Student GetStudent(int id, string fileLocation);
+        public void CreateStudent(Student student, string fileLocation);
+        public void EditStudent(Student student, string fileLocation);
+        public void DeleteStudent(int id, string fileLocation);
     }
 }
