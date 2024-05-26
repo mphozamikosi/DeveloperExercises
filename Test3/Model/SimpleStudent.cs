@@ -14,8 +14,8 @@ namespace Test1.Models
         [StringLength(20)]
         public string Surname { get; set; }
         [Required]
-        [RegularExpression(@"^.{10}$", ErrorMessage = "The field must be exactly 10 characters long.")]
-        [Phone]
+        [StringLength(10, ErrorMessage = "Cell Number must be exactly 10 characters long.")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Only numbers are allowed.")]
         [DisplayName("Cellphone Number")]
         public string CellNumber { get; set; }
     }
