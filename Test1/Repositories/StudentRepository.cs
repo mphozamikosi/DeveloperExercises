@@ -8,12 +8,10 @@ namespace Test1.Repositories
     {
         private readonly IFileWrapper _fileWrapper;
         private readonly IConfiguration _configuration;
-        private readonly string _fileLocation = ""; 
         public StudentRepository(IFileWrapper fileWrapper, IConfiguration configuration) 
         {
             _fileWrapper = fileWrapper;
             _configuration = configuration;
-            _fileLocation = _configuration["StudentFileLocation"];
         }
 
         public List<Student> ListStudents(string fileLocation)
@@ -77,12 +75,14 @@ namespace Test1.Repositories
 
         public void CreateStudent(Student student, string fileLocation)
         {
+            int newId = 1;
             try
             {
                 ValidateFileExistence(fileLocation);
 
                 var currentStudents = ListStudents(fileLocation);
-                int newId = currentStudents.OrderByDescending(student => student.Id).Select(i => i.Id).First() + 1;
+                if(currentStudents.Count > 0)
+                    newId = currentStudents.OrderByDescending(student => student.Id).Select(i => i.Id).First() + 1;
 
                 XDocument document = XDocument.Load(fileLocation);
 

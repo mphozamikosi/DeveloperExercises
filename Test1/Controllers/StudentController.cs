@@ -7,13 +7,13 @@ namespace Test1.Controllers
 {
     public class StudentController : Controller
     {
-        public static readonly Student student = new Student();
         public readonly IStudentRepository _studentRepository;
         private readonly IConfiguration _configuration;
         private readonly string _fileLocation = "";
         public StudentController(IStudentRepository studentRepository, IConfiguration configuration) 
         {
             _studentRepository = studentRepository;
+            _configuration = configuration;
             _fileLocation = configuration["StudentFileLocation"];
         }
         // GET: StudentController

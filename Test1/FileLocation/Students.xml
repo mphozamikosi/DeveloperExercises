@@ -12,16 +12,4 @@
     <Surname>Test Surname</Surname>
     <CellNumber>0665775467</CellNumber>
   </Student>
-  <Student>
-    <Id>4</Id>
-    <Name>Test Name</Name>
-    <Surname>Test Surname</Surname>
-    <CellNumber>0665775467</CellNumber>
-  </Student>
-  <Student>
-    <Id>5</Id>
-    <Name>Test Name</Name>
-    <Surname>Test Surname</Surname>
-    <CellNumber>0665775467</CellNumber>
-  </Student>
 </Students>

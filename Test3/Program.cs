@@ -1,5 +1,11 @@
-var builder = WebApplication.CreateBuilder(args);
+using Test1.Helpers;
+using Test1.Repositories;
 
+var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+
+builder.Services.AddSingleton<ISimpleStudentRepository, SimpleStudentRepository>();
+builder.Services.AddSingleton<IFileWrapper, FileWrapper>();
 // Add services to the container.
 
 builder.Services.AddControllers();

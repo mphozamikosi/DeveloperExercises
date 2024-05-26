@@ -2,7 +2,44 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<header class="masthead">
+    <div class="container">
+        <div class="masthead-subheading">Welcome To Our Student Portal</div>
+        <div class="masthead-heading text-uppercase">Go through the Students you need to</div>
+        <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger" asp-controller="Student" asp-action="Index">Go To Students</a>
+        <p></p>
+        <div class="masthead-subheading">Scroll Down for More</div>
+    </div>
+</header>
+
+<!-- Team-->
+<section class="page-section bg-light" id="team">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="assets/img/team/boss.jpg" alt="" />
+                    <h4>Mphoza Mikosi</h4>
+                    <p class="text-muted">Founder</p>
+                    <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/MphozaMikosi"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/mikosi1"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/mpho-mikosi-b7a150100/"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <p class="large text-muted">
+                    I am a 27 year old developer, who loves to dwell deep in a functionality of a
+                    system. I am an ambitious, self-motivated, young and energetic person who is
+                    committed to self-development and learning. I possess a broad range of
+                    technical, personal effectiveness and leadership skills. I strive to be at peak
+                    performance in any position I may encounter with positive attitude driven by a
+                    curious and aspiring mind that needs to gain experience and success in my
+                    chosen career path. I have my own ways of attacking most different types of
+                    everyday life situations/problems. I work the most effectively in groups, although
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
