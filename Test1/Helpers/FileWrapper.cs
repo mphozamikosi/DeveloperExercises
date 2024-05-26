@@ -1,5 +1,8 @@
-﻿namespace Test1.Helpers
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Test1.Helpers
 {
+    [ExcludeFromCodeCoverage]
     public class FileWrapper : IFileWrapper
     {
         public FileWrapper() { }
@@ -19,6 +22,10 @@
         public void WriteAllText(string path, string content)
         {
             File.WriteAllText(path, content);
+        }
+        public void DeleteFile(string path)
+        {
+            File.Delete(path);
         }
     }
 }

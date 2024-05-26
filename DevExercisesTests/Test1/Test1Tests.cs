@@ -40,7 +40,7 @@ namespace DevExercisesTests.Test1
         //    return new StudentRepository(this);
         //}
         [Test]
-        public void GivenStudent_WhenValidFileLocationSpecified_ThenShouldNotReturnNull() 
+        public void GivenStudent_WhenValidFileLocationSpecified_ThenShouldNotReturnNullAndReturnStudents() 
         {
             var stubs = GetStubs();
             stubs.ServiceProvider.GetService(typeof(IConfiguration))

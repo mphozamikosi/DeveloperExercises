@@ -24,10 +24,4 @@
     <Surname>Test Surname</Surname>
     <CellNumber>0665775467</CellNumber>
   </Student>
-  <Student>
-    <Id>6</Id>
-    <Name>Easy Test 3</Name>
-    <Surname>Easy Test 3</Surname>
-    <CellNumber>0667896333</CellNumber>
-  </Student>
 </Students>

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Test1.Models
 {
-    public class Student
+    public class SimpleStudent
     {
         public int Id { get; set; }
         [Required]

@@ -8,12 +8,10 @@ namespace Test1.Repositories
     {
         private readonly IFileWrapper _fileWrapper;
         private readonly IConfiguration _configuration;
-        private readonly string _fileLocation = ""; 
         public StudentRepository(IFileWrapper fileWrapper, IConfiguration configuration) 
         {
             _fileWrapper = fileWrapper;
             _configuration = configuration;
-            _fileLocation = _configuration["StudentFileLocation"];
         }
 
         public List<Student> ListStudents(string fileLocation)
